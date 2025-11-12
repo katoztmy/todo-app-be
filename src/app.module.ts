@@ -4,12 +4,22 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppService } from './app.service';
 import { join } from 'path';
-import { AuthorsResolver } from './authors/author.resolver';
-import { AuthorsService } from './authors/authors.service';
-import { PostsService } from './posts/posts.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './tasks/entity/user';
+import { TaskResolver } from './tasks/task.resolver';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5433,
+      username: 'postgres',
+      password: '',
+      database: 'todo_app',
+      entities: [User],
+      synchronize: false,
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: true,
@@ -17,6 +27,6 @@ import { PostsService } from './posts/posts.service';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, AuthorsResolver, AuthorsService, PostsService],
+  providers: [AppService, TaskResolver],
 })
 export class AppModule {}
