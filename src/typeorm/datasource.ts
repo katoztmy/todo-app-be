@@ -13,8 +13,6 @@ const AppDataSource = new DataSource({
   entities: [User, Todo],
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
-  migrationsTableName: 'public.migrations',
-  migrationsTransactionMode: 'each',
 });
 
 export default AppDataSource;
