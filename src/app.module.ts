@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './tasks/entity/user';
-import { TaskResolver } from './tasks/task.resolver';
+import { TodoResolver } from './tasks/todo.resolver';
 
 @Module({
   imports: [
@@ -27,6 +27,6 @@ import { TaskResolver } from './tasks/task.resolver';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, TaskResolver],
+  providers: [AppService, TodoResolver],
 })
 export class AppModule {}
