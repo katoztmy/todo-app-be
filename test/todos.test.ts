@@ -43,7 +43,7 @@ describe('Todos', () => {
   });
 
   describe('タスクが配列で返る', () => {
-    it('タスクが存在する場合、配列として取得できること', async () => {
+    it('配列として取得できること', async () => {
       const testTodos = [
         {
           title: 'テストタスク1',
@@ -64,8 +64,6 @@ describe('Todos', () => {
         .expect(200);
 
       expect(res.body.errors).toBeUndefined();
-      expect(res.body.data).toBeDefined();
-      expect(res.body.data.todos).toBeDefined();
       expect(Array.isArray(res.body.data.todos)).toBe(true);
       expect(res.body.data.todos).toHaveLength(2);
     });
@@ -119,9 +117,7 @@ describe('Todos', () => {
       expect(typeof todo.id).toBe('string');
       expect(typeof todo.title).toBe('string');
       expect(typeof todo.completed).toBe('boolean');
-      // GraphQLではDateはISO8601文字列として返される
       expect(typeof todo.dueDate).toBe('string');
-      expect(() => new Date(todo.dueDate)).not.toThrow();
     });
   });
 
@@ -133,9 +129,6 @@ describe('Todos', () => {
         .expect(200);
 
       expect(res.body.errors).toBeUndefined();
-      expect(res.body.data).toBeDefined();
-      expect(res.body.data.todos).toBeDefined();
-      expect(Array.isArray(res.body.data.todos)).toBe(true);
       expect(res.body.data.todos).toEqual([]);
     });
   });
