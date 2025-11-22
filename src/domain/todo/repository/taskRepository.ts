@@ -1,11 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { Todo } from 'src/tasks/models/todo.model';
-import AppDataSource from 'src/typeorm/datasource';
 import { Todo as TodoEntity } from 'src/tasks/entity/todo';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TodoRepository {
-  async findAll(): Promise<Todo[]> {
-    return AppDataSource.getRepository(TodoEntity).find();
+  constructor(
+    @InjectRepository(TodoEntity)
+    private readonly todoRepository: Repository<TodoEntity>,
+  ) {}
+
+  async findAll(): Promise<TodoEntity[]> {
+    return this.todoRepository.find();
   }
 }

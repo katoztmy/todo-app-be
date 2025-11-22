@@ -7,6 +7,8 @@ import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './tasks/entity/user';
 import { TodoResolver } from './tasks/todo.resolver';
+import { Todo } from './tasks/entity/todo';
+import { TodoRepository } from './domain/todo/repository/taskRepository';
 
 @Module({
   imports: [
@@ -17,9 +19,10 @@ import { TodoResolver } from './tasks/todo.resolver';
       username: 'postgres',
       password: '',
       database: 'todo_app',
-      entities: [User],
+      entities: [User, Todo],
       synchronize: false,
     }),
+    TypeOrmModule.forFeature([Todo]),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: true,
@@ -27,6 +30,6 @@ import { TodoResolver } from './tasks/todo.resolver';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, TodoResolver],
+  providers: [AppService, TodoResolver, TodoRepository],
 })
 export class AppModule {}
