@@ -3,7 +3,7 @@ import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { AppModule } from 'src/app.module';
-import { Todo } from 'src/tasks/models/todo.model';
+import { Todo } from 'src/presentation/graphql/todo/todo.model';
 
 describe('Todos', () => {
   let app: INestApplication;

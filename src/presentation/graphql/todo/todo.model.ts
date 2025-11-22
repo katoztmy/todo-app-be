@@ -1,9 +1,8 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { PrimaryGeneratedColumn } from 'typeorm';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class Todo {
-  @PrimaryGeneratedColumn('uuid')
+  @Field()
   id: string;
 
   @Field()

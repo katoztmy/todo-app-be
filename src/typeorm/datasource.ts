@@ -1,5 +1,5 @@
-import { User } from '../tasks/entity/user';
-import { Todo } from '../tasks/entity/todo';
+import { User } from '../infra/database/entity/user.entity';
+import { Todo } from '../infra/database/entity/todo.entity';
 import { DataSource } from 'typeorm';
 
 const AppDataSource = new DataSource({

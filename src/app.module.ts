@@ -5,10 +5,10 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './tasks/entity/user';
-import { TodoResolver } from './tasks/todo.resolver';
-import { Todo } from './tasks/entity/todo';
-import { TodoRepository } from './domain/todo/repository/taskRepository';
+import { User } from './infra/database/entity/user.entity';
+import { Todo } from './infra/database/entity/todo.entity';
+import { TodoResolver } from './presentation/graphql/todo/todo.resolver';
+import { TodoRepository } from './infra/database/todo/todo.repository';
 
 @Module({
   imports: [
