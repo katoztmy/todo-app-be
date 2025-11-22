@@ -4,8 +4,8 @@ import { DataSource } from 'typeorm';
 
 const AppDataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 5433,
+  host: process.env.DB_HOST || 'localhost',
+  port: parseInt(process.env.DB_PORT || '5432'),
   username: 'postgres',
   password: '',
   database: 'todo_app',
