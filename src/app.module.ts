@@ -19,6 +19,7 @@ import { TodoRepository } from './infra/database/todo/todo.repository';
       username: 'postgres',
       password: '',
       database: 'todo_app',
+      schema: 'todo',
       entities: [User, Todo],
       synchronize: false,
     }),
