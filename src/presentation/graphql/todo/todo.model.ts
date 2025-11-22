@@ -17,4 +17,3 @@ export class Todo {
   @Field()
   completed: boolean;
 }
-
