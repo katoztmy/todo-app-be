@@ -1,4 +1,4 @@
-import { User } from '../tasks/entity/user';
+import { TodoEntity } from '../todo/entity/todo';
 import { DataSource } from 'typeorm';
 
 const AppDataSource = new DataSource({
@@ -9,7 +9,7 @@ const AppDataSource = new DataSource({
   password: '',
   database: 'todo_app',
   schema: 'todo',
-  entities: [User],
+  entities: [TodoEntity],
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
 });
