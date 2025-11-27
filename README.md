@@ -51,6 +51,16 @@ $ npm run start:prod
 $ docker compose up -d
 ```
 
+## Migration
+
+```bash
+# generate migration files
+$ npm run migrate:gen
+
+# execute migration
+$ npm run migrate
+```
+
 ## Test
 
 ````bash
@@ -62,9 +72,5 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
-```s
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+```
 ````
