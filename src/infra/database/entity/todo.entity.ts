@@ -17,7 +17,7 @@ export class Todo {
   @Column({ type: 'text', nullable: true })
   description?: string;
 
-  @Column({ name: 'due_date', type: 'date', nullable: true })
+  @Column({ name: 'due_date', type: 'timestamp', nullable: true })
   dueDate?: Date;
 
   @Column({ default: false })
