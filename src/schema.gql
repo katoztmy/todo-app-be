@@ -8,6 +8,8 @@ type Todo {
   description: String
   dueDate: DateTime
   completed: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """
