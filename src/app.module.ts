@@ -5,8 +5,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './tasks/entity/user';
-import { TaskResolver } from './tasks/task.resolver';
+import { TodoEntity } from './todo/entity/todo';
+import { TodoResolver } from './todo/todo.resolver';
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import { TaskResolver } from './tasks/task.resolver';
       username: 'postgres',
       password: '',
       database: 'todo_app',
-      entities: [User],
+      entities: [TodoEntity],
       synchronize: false,
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -25,8 +25,9 @@ import { TaskResolver } from './tasks/task.resolver';
       playground: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
+    TypeOrmModule.forFeature([TodoEntity]),
   ],
   controllers: [AppController],
-  providers: [AppService, TaskResolver],
+  providers: [AppService, TodoResolver],
 })
 export class AppModule {}
