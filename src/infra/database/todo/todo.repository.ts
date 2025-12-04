@@ -44,4 +44,18 @@ export class TodoRepository {
 
     return updatedTodo;
   }
+
+  async delete(id: string): Promise<string> {
+    const todo = await this.todoRepository.findOne({
+      where: { id },
+    });
+
+    if (!todo) {
+      throw new Error(`Todo with id ${id} not found`);
+    }
+
+    await this.todoRepository.delete({ id: todo.id });
+
+    return id;
+  }
 }

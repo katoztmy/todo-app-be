@@ -21,4 +21,9 @@ export class TodoResolver {
   async updateTodo(@Args('input') input: UpdateTodoInput) {
     return await this.todoRepository.update(input);
   }
+
+  @Mutation(() => String)
+  async deleteTodo(@Args('id') id: string) {
+    return await this.todoRepository.delete(id);
+  }
 }
