@@ -5,7 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Todo } from './infra/database/entity/todo.entity';
+import { Todo } from './todo/entity/todo.entity';
 import { TodoResolver } from './presentation/graphql/todo/todo.resolver';
 import { TodoRepository } from './infra/database/todo/todo.repository';
 

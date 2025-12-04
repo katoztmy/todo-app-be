@@ -6,7 +6,7 @@ import { AppModule } from '../src/app.module';
 import { Todo } from 'src/presentation/graphql/todo/todo.model';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Todo as TodoEntity } from '../src/infra/database/entity/todo.entity';
+import { Todo as TodoEntity } from '../src/todo/entity/todo.entity';
 
 describe('Todos', () => {
   let app: INestApplication;
