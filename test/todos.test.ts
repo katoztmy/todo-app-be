@@ -3,7 +3,6 @@ import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
-import { Todo } from 'src/presentation/graphql/todo/todo.model';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Todo as TodoEntity } from '../src/todo/entity/todo.entity';
