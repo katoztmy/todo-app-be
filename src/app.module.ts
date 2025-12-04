@@ -25,8 +25,12 @@ import { TodoRepository } from './infra/database/todo/todo.repository';
     TypeOrmModule.forFeature([Todo]),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      playground: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      csrfPrevention: false,
+      introspection: true,
+      playground: false,
+      // Apollo Studio Sandboxを表示
+      includeStacktraceInErrorResponses: true,
     }),
   ],
   controllers: [AppController],
