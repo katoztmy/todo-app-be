@@ -11,6 +11,6 @@ export class TodoRepository {
   ) {}
 
   async findAll(): Promise<TodoEntity[]> {
-    return this.todoRepository.find();
+    return await this.todoRepository.find();
   }
 }
