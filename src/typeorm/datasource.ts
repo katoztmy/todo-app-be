@@ -1,4 +1,4 @@
-import { Todo } from '../infra/database/entity/todo.entity';
+import { Todo } from '../todo/entity/todo.entity';
 import { DataSource } from 'typeorm';
 
 const AppDataSource = new DataSource({
