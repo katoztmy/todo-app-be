@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type Todo {
-  id: String!
+  id: ID!
   title: String!
   description: String
   dueDate: DateTime
@@ -19,4 +19,23 @@ scalar DateTime
 
 type Query {
   todos: [Todo!]!
+}
+
+type Mutation {
+  createTodo(input: CreateTodoInput!): Todo!
+  updateTodo(input: UpdateTodoInput!): Todo!
+}
+
+input CreateTodoInput {
+  title: String!
+  description: String
+  dueDate: DateTime
+}
+
+input UpdateTodoInput {
+  id: ID!
+  title: String!
+  description: String
+  dueDate: DateTime
+  completed: Boolean
 }
