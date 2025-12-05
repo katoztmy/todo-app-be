@@ -5,29 +5,39 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TodoEntity } from './todo/entity/todo';
-import { TodoResolver } from './todo/todo.resolver';
+import { Todo } from './infra/database/entity/todo.entity';
+import { TodoResolver } from './presentation/graphql/todo/todo.resolver';
+import { TodoRepository } from './infra/database/todo/todo.repository';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5433,
+      host: process.env.DB_HOST || 'localhost',
+      port: parseInt(process.env.DB_PORT || '5433'),
       username: 'postgres',
       password: '',
       database: 'todo_app',
-      entities: [TodoEntity],
+      schema: 'todo',
+      entities: [Todo],
       synchronize: false,
     }),
+    TypeOrmModule.forFeature([Todo]),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    TypeOrmModule.forFeature([TodoEntity]),
   ],
   controllers: [AppController],
-  providers: [AppService, TodoResolver],
+  providers: [
+    AppService,
+    TodoResolver,
+    TodoRepository,
+    {
+      provide: 'ITodoRepository',
+      useClass: TodoRepository,
+    },
+  ],
 })
 export class AppModule {}
