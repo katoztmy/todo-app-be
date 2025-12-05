@@ -30,6 +30,14 @@ import { TodoRepository } from './infra/database/todo/todo.repository';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, TodoResolver, TodoRepository],
+  providers: [
+    AppService,
+    TodoResolver,
+    TodoRepository,
+    {
+      provide: 'ITodoRepository',
+      useClass: TodoRepository,
+    },
+  ],
 })
 export class AppModule {}

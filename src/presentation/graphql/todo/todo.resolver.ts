@@ -1,11 +1,15 @@
 import { Query, Resolver } from '@nestjs/graphql';
 import { Todo } from './todo.model';
 import { Todo as TodoEntity } from '../../../infra/database/entity/todo.entity';
-import { TodoRepository } from '../../../infra/database/todo/todo.repository';
+import { ITodoRepository } from 'src/infra/database/todo/interface';
+import { Inject } from '@nestjs/common';
 
 @Resolver(() => Todo)
 export class TodoResolver {
-  constructor(private readonly todoRepository: TodoRepository) {}
+  constructor(
+    @Inject('ITodoRepository')
+    private readonly todoRepository: ITodoRepository,
+  ) {}
 
   @Query(() => [Todo])
   async todos(): Promise<Todo[]> {
