@@ -20,3 +20,13 @@ scalar DateTime
 type Query {
   todos: [Todo!]!
 }
+
+type Mutation {
+  createTodo(input: CreateTodoInput!): Todo!
+}
+
+input CreateTodoInput {
+  title: String!
+  description: String
+  dueDate: DateTime
+}
