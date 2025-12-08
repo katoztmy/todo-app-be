@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Todo } from './todo/entity/todo.entity';
-import { TodoResolver } from './presentation/graphql/todo/todo.resolver';
+import { TodoResolver } from './presentation/todo.resolver';
 import { TodoRepository } from './infra/database/todo/todo.repository';
 
 @Module({
