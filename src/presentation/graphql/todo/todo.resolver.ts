@@ -1,8 +1,9 @@
 import { Query, Resolver } from '@nestjs/graphql';
 import { Todo } from './todo.model';
-import { Todo as TodoEntity } from '../../../infra/database/entity/todo.entity';
+import { Todo as TodoEntity } from 'src/todo/entity/todo.entity';
 import { ITodoRepository } from 'src/infra/database/todo/interface';
 import { Inject } from '@nestjs/common';
+import { CreateTodoInput } from 'src/todo/models/todo.model';
 
 @Resolver(() => Todo)
 export class TodoResolver {
