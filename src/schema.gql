@@ -24,6 +24,7 @@ type Query {
 type Mutation {
   createTodo(input: CreateTodoInput!): Todo!
   updateTodo(input: UpdateTodoInput!): Todo!
+  deleteTodo(id: String!): String!
 }
 
 input CreateTodoInput {

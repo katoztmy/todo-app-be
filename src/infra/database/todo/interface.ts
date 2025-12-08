@@ -5,4 +5,5 @@ export interface ITodoRepository {
   findAll(): Promise<TodoEntity[]>;
   create(todo: CreateTodoInput): Promise<TodoEntity>;
   update(todo: UpdateTodoInput): Promise<TodoEntity>;
+  delete(id: string): Promise<string>;
 }

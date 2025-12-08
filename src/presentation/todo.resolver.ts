@@ -5,8 +5,8 @@ import {
   CreateTodoInput,
   UpdateTodoInput,
 } from 'src/todo/models/todo.model';
-import { ITodoRepository } from 'src/infra/database/todo/interface';
 import { Todo as TodoEntity } from 'src/todo/entity/todo.entity';
+import { ITodoRepository } from 'src/infra/database/todo/interface';
 
 @Resolver(() => Todo)
 export class TodoResolver {
@@ -17,16 +17,7 @@ export class TodoResolver {
 
   @Query(() => [Todo])
   async todos(): Promise<Todo[]> {
-    const todos: TodoEntity[] = await this.todoRepository.findAll();
-    return todos.map((todo) => ({
-      id: todo.id,
-      title: todo.title,
-      description: todo.description,
-      dueDate: todo.dueDate,
-      completed: todo.completed,
-      createdAt: todo.createdAt,
-      updatedAt: todo.updatedAt,
-    }));
+    return await this.todoRepository.findAll();
   }
 
   @Mutation(() => Todo)
@@ -55,5 +46,10 @@ export class TodoResolver {
       createdAt: todo.createdAt,
       updatedAt: todo.updatedAt,
     };
+  }
+
+  @Mutation(() => String)
+  async deleteTodo(@Args('id') id: string) {
+    return await this.todoRepository.delete(id);
   }
 }
