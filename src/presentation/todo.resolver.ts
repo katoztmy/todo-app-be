@@ -10,7 +10,10 @@ import { ITodoRepository } from 'src/infra/database/todo/interface';
 
 @Resolver(() => Todo)
 export class TodoResolver {
-  constructor(private readonly todoRepository: ITodoRepository) {}
+  constructor(
+    @Inject('ITodoRepository')
+    private readonly todoRepository: ITodoRepository,
+  ) {}
 
   @Query(() => [Todo])
   async todos(): Promise<Todo[]> {
