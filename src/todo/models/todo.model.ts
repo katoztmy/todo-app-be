@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class Todo {
@@ -22,4 +22,14 @@ export class Todo {
 
   @Field()
   updatedAt: Date;
+}
+
+@InputType()
+export class CreateTodoInput {
+  @Field()
+  title: string;
+  @Field({ nullable: true })
+  description?: string;
+  @Field({ nullable: true })
+  dueDate?: Date;
 }

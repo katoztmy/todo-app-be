@@ -5,7 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Todo } from './infra/database/entity/todo.entity';
+import { Todo } from './todo/entity/todo.entity';
 import { TodoResolver } from './presentation/graphql/todo/todo.resolver';
 import { TodoRepository } from './infra/database/todo/todo.repository';
 
@@ -25,8 +25,12 @@ import { TodoRepository } from './infra/database/todo/todo.repository';
     TypeOrmModule.forFeature([Todo]),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      playground: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      csrfPrevention: false,
+      introspection: true,
+      playground: false,
+      // Apollo Studio Sandboxを表示
+      includeStacktraceInErrorResponses: true,
     }),
   ],
   controllers: [AppController],

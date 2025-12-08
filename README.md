@@ -74,3 +74,20 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 ````
+
+## お試し Todo 用
+
+- sandbox Access 可能
+  shttps://studio.apollographql.com/sandbox/explorer
+
+```
+query {
+  todos {
+    id
+    title
+    description
+    dueDate
+    completed
+  }
+}
+```
